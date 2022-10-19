@@ -5,8 +5,11 @@
    
    LocalInboundAdapter is a Copy of EnsLib.SQL.InboundAdapter with modifications made to access tables in a local IRIS instanc via Dynamic SQL 
    Although it inherits many features of the original code, This code is not part of InterSystems IRIS and is not supported by InterSystems Corp.
+   You are hereby warned that this is Unsupported code which you can use at your own Risk.
+    
    Change List:
    2022-10-14, PYD, Pierre-Yves Duquesnoy, Inital copy and modifications of EnsLib.SQL.InboundAdapter
+   2022-10-19, PYD, Pierre-Yves Duquesnoy, Fixing the Row Copy from dynamic ResultSet to Snapshot (ImportOneRowFromResultSet) and some UnitTests
    
    */
 
