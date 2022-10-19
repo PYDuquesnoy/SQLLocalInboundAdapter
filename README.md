@@ -10,6 +10,7 @@ The functionality is the same, but it uses DynamicSQL to access local tables ins
 Coded and Tested on  IRIS 2022.1
 
 ## UnitTest:
-Run the UnitTests with 
-```https://github.com/PYDuquesnoy/SQLLocalInboundAdapter.git```
+2 Sample productions with a Business Service and 3 UnitTests:
+
+```do ##class(IBSP.UnitTest.SQL.Base).Test()```
 
