@@ -40,8 +40,11 @@ Property DeleteQuery As %String(MAXLEN = "");
 /// The name of the IDKey field in the query's resultset. Must be unique (non-reused) over time if DeleteQuery is empty.
 Property KeyFieldName As %String [ InitialExpression = "ID" ];
 
+/// Enable Verbose LogInfo for Adapter Debugging
+Property Verbose As %Boolean [ InitialExpression = 0 ];
+
 /// These are the production settings for this object
-Parameter SETTINGS = "CallInterval:Basic,Query:Data,Parameters:Data,ParamSQLTypes:Data,DeleteQuery:Data,KeyFieldName:Data,MaxVarCharLengthAsString:Data,DoNotInterruptResultSet:Data";
+Parameter SETTINGS = "CallInterval:Basic,Verbose:Basic,Query:Data,Parameters:Data,ParamSQLTypes:Data,DeleteQuery:Data,KeyFieldName:Data,MaxVarCharLengthAsString:Data,DoNotInterruptResultSet:Data";
 
 /// If DeleteQuery is empty or fails, the IDKey value of the last retrieved row is recorded here.
 /// If you want to use a Query that will return only new ID values and not use a DeleteQuery, use
@@ -415,7 +418,9 @@ Method OnTask() As %Status
 			Quit ; found a good one
 		}
 		Quit:$$$ISERR(tSC)||$S(""=..KeyFieldName:'tCount, 1:""=tRowID)
- 		$$$LOGINFO($$$FormatText($$$Text("Processing row %1 '%2'"),..KeyFieldName,tRowID))
+ 		if ..Verbose {  //PYD+
+			$$$LOGINFO($$$FormatText($$$Text("Processing row %1 '%2'"),..KeyFieldName,tRowID))
+		}
 
  		Set tSC=..BusinessHost.ProcessInput(..%Row.%ConstructClone())  Quit:$$$ISERR(tSC)
  		
